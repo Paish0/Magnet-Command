@@ -4,14 +4,13 @@ import dev.keesmand.magnetcommand.MagnetCommandMod;
 import dev.keesmand.magnetcommand.config.MagnetCommandConfig;
 import dev.keesmand.magnetcommand.enums.DropMode;
 import dev.keesmand.magnetcommand.enums.MagnetMode;
-import dev.keesmand.magnetcommand.util.IEntityDataSaver;
 import dev.keesmand.magnetcommand.util.MagnetModeData;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,8 +35,8 @@ public class BlockMixin {
         MagnetCommandConfig config = MagnetCommandMod.CONFIG;
         if (config == null) return droppedStacks;
 
-        if (entity instanceof PlayerEntity player) {
-            MagnetMode mode = MagnetModeData.getMagnetMode((IEntityDataSaver) player);
+        if (entity instanceof ServerPlayerEntity player) {
+            MagnetMode mode = MagnetModeData.getMagnetMode(player);
             if (mode != MagnetMode.OnBreak) return droppedStacks;
 
             droppedStacks.forEach(dropStack -> InjectStack(world,

@@ -13,6 +13,7 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://maven.nucleoid.xyz' } // playerdataapi
 }
 
 dependencies {
@@ -24,7 +25,8 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    include(modImplementation('me.lucko:fabric-permissions-api:0.3.3'))
+    include(modImplementation('me.lucko:fabric-permissions-api:0.4.1'))
+    modImplementation include("eu.pb4:player-data-api:${project.player_data_api}")
 }
 
 processResources {

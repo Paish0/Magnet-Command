@@ -4,11 +4,9 @@ import dev.keesmand.magnetcommand.MagnetCommandMod;
 import dev.keesmand.magnetcommand.config.MagnetCommandConfig;
 import dev.keesmand.magnetcommand.enums.MagnetMode;
 import dev.keesmand.magnetcommand.enums.MoveMode;
-import dev.keesmand.magnetcommand.util.IEntityDataSaver;
 import dev.keesmand.magnetcommand.util.Magnet;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -30,12 +28,12 @@ public abstract class ServerPlayerEntityMixin {
     private void magnetRangeMode(CallbackInfo callbackInfo) {
         // well this sure is a nice trick, thanks u/tom_the_geek
         // https://www.reddit.com/r/fabricmc/comments/nw3rs8/comment/h17daen
-        PlayerEntity player = (PlayerEntity) (Object) this;
+        ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
 
         MagnetCommandConfig config = MagnetCommandMod.CONFIG;
         if (config == null) return;
         if (!config.rangeEnabled) return;
-        MagnetMode mode = getMagnetMode((IEntityDataSaver) player);
+        MagnetMode mode = getMagnetMode(player);
         if (mode != MagnetMode.Range) return;
 
         double range = config.range;

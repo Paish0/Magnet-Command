@@ -6,7 +6,6 @@
   "mixins": [
     "BlockMixin",
     "ItemScattererMixin",
-    "ModEntityDataSaverMixin",
     "PlayerManagerMixin",
     "ServerPlayerEntityMixin",
     "ServerPlayerInteractionManagerMixin",

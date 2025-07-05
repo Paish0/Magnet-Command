@@ -4,7 +4,6 @@ import dev.keesmand.magnetcommand.MagnetCommandMod;
 import dev.keesmand.magnetcommand.config.MagnetCommandConfig;
 import dev.keesmand.magnetcommand.enums.DropMode;
 import dev.keesmand.magnetcommand.enums.MagnetMode;
-import dev.keesmand.magnetcommand.util.IEntityDataSaver;
 import dev.keesmand.magnetcommand.util.MagnetModeData;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -28,7 +27,7 @@ public class ItemScattererMixin {
         ServerPlayerEntity player = MagnetCommandMod.BLOCKS_BROKEN_BY.getOrDefault(pos, null);
         if (player == null) return;
 
-        if (MagnetModeData.getMagnetMode((IEntityDataSaver) player) != MagnetMode.OnBreak) return;
+        if (MagnetModeData.getMagnetMode(player) != MagnetMode.OnBreak) return;
 
         for (int i = 0; i < inventory.size(); ++i) {
             InjectStack(world,

@@ -4,7 +4,6 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.keesmand.magnetcommand.MagnetCommandMod;
 import dev.keesmand.magnetcommand.config.MagnetCommandConfig;
 import dev.keesmand.magnetcommand.enums.MagnetMode;
-import dev.keesmand.magnetcommand.util.IEntityDataSaver;
 import dev.keesmand.magnetcommand.util.MagnetModeData;
 import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.minecraft.server.command.CommandManager;
@@ -45,7 +44,7 @@ public class MagnetCommand {
             source.sendFeedback(() -> Text.literal("This command can only be used by players"), false);
             return 0;
         }
-        MagnetModeData.setMagnetMode((IEntityDataSaver) source.getPlayer(), mode);
+        MagnetModeData.setMagnetMode(source.getPlayer(), mode);
         source.sendFeedback(() -> Text.literal("Set magnet mode to " + mode.name()), false);
 
         return 0;
